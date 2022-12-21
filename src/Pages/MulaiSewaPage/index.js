@@ -51,7 +51,7 @@ const MulaiSewaPage = () => {
       return alert("silahkan pilih waktu jemput/ambil");
     }
     if (!penumpang) {
-      return alert("silahkan pilih jumlah penumpang");
+      setPenumpang(0);
     }
     const filteredCars = [];
 
@@ -66,7 +66,7 @@ const MulaiSewaPage = () => {
     let dateInput = Date.parse(date + "T" + hour);
 
     if (listCarsResult) {
-      if (driver && penumpang && dateInput !== NaN) {
+      if (driver && dateInput !== NaN) {
         for (let i = 0; i < listCarsResult.length; i++) {
           let dataDate = Date.parse(listCarsResult[i].availableAt);
           if (
@@ -78,10 +78,11 @@ const MulaiSewaPage = () => {
           }
         }
         if (filteredCars.length === 0) {
-          alert("Pencarian Tidak ditemukan");
+          return alert("Pencarian Tidak ditemukan");
         }
       }
     }
+    console.log(filteredCars.length);
     setFilteredCar(filteredCars);
   }
 
